@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <!--required tags-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <!--end bootstrap tags-->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!--<link rel="stylesheet" href="css/style.css">-->
+
+    <title>Dream Homes</title>
+    <style>
+    *,
+    *::after,
+    *::before{
+      margin:0;
+      padding:0;
+      box-sizing:inherit;
+    }
+    html{
+      /*font-size:10px; /*1rem equals 10px*/
+      /*10px/16px font size =0.625 *100 =62.5%*//*rems not supported in IE9*/
+      font-size: 62.5%;
+    }
+      body{
+        font-family:"Lato", sans-serif;
+        font-weight: 400;
+        font-size:16px;
+        line-height:1.7;
+        color:#777;
+        padding: 3rem;
+
+        box-sizing:border-box;
+      }
+      .header{
+        height: 95vh;
+        background-image: linear-gradient(to right bottom, rgba(96, 0, 128, 0.596), rgba(0, 0, 0, 0.8)) , url(img/head-img.jpeg);
+        background-size:cover;
+        background-position: top;
+        clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+
+        position: relative;/*used with absolute position in logo-box*/
+      }
+      .logo-box{
+        position: absolute;
+        top:4rem;
+        left:4rem;
+      }
+      .logo{
+        height:5rem;
+      }
+      /*navigation*/
+      .navigation__checkbox {
+  display: none; }
+
+.navigation__button {
+  background-color: rgb(204, 0, 204);
+  height: 4rem;
+  width: 4rem;
+  position: fixed;
+  top: 4rem;
+  right: 4rem;
+  border:3px solid #fff;
+  border-radius: 50%;
+  z-index: 2000;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+  text-align: center;
+  cursor: pointer; }
+
+.navigation__background {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  position: fixed;
+  top: 4rem;
+  right: 4rem;
+  background-image: radial-gradient(#000, #28b485);
+  z-index: 1000;
+  transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1); }
+
+.navigation__nav {
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1500;
+  opacity: 0;
+  width: 0;
+  transition: all 0.8s cubic-bezier(0.43, 1.64, .8, -0.7); }
+
+.navigation__list {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  list-style: none;
+  text-align: right;
+  width: 100%; }
+
+.navigation__item {
+  margin: 1rem;
+  }
+
+.navigation__link:link, .navigation__link:visited {
+  display: inline-block;
+  font-size: 3rem;
+  font-weight: 300;
+  padding: 1rem 2rem;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+ 
+  background-image: linear-gradient(120deg, transparent 0%, transparent 50%, #fff 50%);
+  background-size: 220%;
+  transition: all .4s; }
+  .navigation__link:link span, .navigation__link:visited span {
+    margin-right: 1.5rem;
+    display: inline-block; }
+
+.navigation__link:hover, .navigation__link:active {
+  background-position: 100%;
+  color: #55c57a;
+  transform: translateX(1rem); }
+
+.navigation__checkbox:checked ~ .navigation__background {
+  transform: scale(80); }
+
+.navigation__checkbox:checked ~ .navigation__nav {
+  opacity: 1;
+  width: 100%; }
+
+  .navigation_icon{
+    position: relative;
+    margin-top:1.5rem;
+  }
+  /*.navigation_icon::before{
+    width: 3rem;
+    height:2px;/*use px so it will not change*/
+   /* background-color:#333;
+  }
+  .navigation_icon::after{
+    width: 3rem;
+    height: 2px;/*use px so it will not change*/
+    /*background-color: #333;
+  }*/
+  .navigation_icon, .navigation_icon::before, .navigation_icon::after {
+    width: 2rem;
+    height: 2px;/*use px so it will not change*/
+    background-color: #333;
+    display: inline-block; }
+  .navigation_icon::before, .navigation_icon::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    transition: all .2s; }
+    .navigation_icon::before {
+    top: -.8rem; }
+    .navigation_icon::after {
+    top: .8rem; }
+    .navigation__button:hover .navigation_icon::before {
+  top: -1rem; }
+
+.navigation__button:hover .navigation_icon::after {
+  top: 1rem; }
+  .navigation__checkbox:checked + .navigation__button .navigation_icon {
+  background-color: transparent; }
+
+.navigation__checkbox:checked + .navigation__button .navigation_icon::before {
+  top: 0;
+  transform: rotate(135deg); }
+
+.navigation__checkbox:checked + .navigation__button .navigation_icon::after {
+  top: 0;
+  transform: rotate(-135deg); }
+      /**/
+      /*text-box container*/
+      /*heading h1 styles*/
+      .text-box{
+        position:absolute;/*center text-box elements*/
+        top:45%; /*45% from top*/
+        left:50%;/*centers based on the left side of element*/
+        transform:translate(-50%, -50%);/*make center*/
+        text-align:center;/*center all text in text-box container*/
+
+      }
+      .heading-primary{
+        color:#fff;
+        text-transform:uppercase;
+        backface-visibility: hidden;/*hides extra movement in animation*/
+        margin-bottom:5rem;
+        font-family: 'Lato', sans-serif;
+      }
+      .heading-primary-main{
+        display:block;/*make span items stack on each other*/
+        font-size:8rem;
+        font-weight:400;
+        letter-spacing:3.5rem;
+        font-family: 'Fredericka the Great', cursive;
+  color:#fff;
+        /**/
+        animation-name: moveInLeft;/*apply h1 animations*/
+        animation-duration:1s;
+        animation-timing-function:ease-out;
+
+        /*animation tips*/
+        /*animation-delay: 3s; //*waits 3 seconds then works*/
+        /*animation-iteration-count: 3; //*make hapens 3 times*/
+        /*animation-timing-function: ease; //*make hapens 3 times*/
+         /*animation-timing-function: ease-in; //*make start slower*/
+          /*animation-timing-function: ease-out; //*make start faster*/
+          /*animation-timing-function: ease-in-out; //*make hapens 3 times*/
+          /*animation-timing-function: linear; //**/
+          /*animation-timing-function: step-start; //**/
+          /*animation-timing-function: step-end; //**/
+        /**/
+      }
+      .heading-primary-sub{
+        display:block;/*make span items stack on each other*/
+        font-size:3rem;
+        font-weight:700;
+        letter-spacing:1.75rem;
+        /*font-family: 'Fredericka the Great', cursive;*/
+        color:#ffa200;
+        /**/
+        animation: moveInRight 1s ease-out;/*apply h1 animations*/
+      }
+      /*h1 animations*/
+      @keyframes moveInLeft{
+        0%{
+            opacity:0;
+            transform: translateX(-10rem);/*starts at left*/
+        }
+        80%{
+          trasform: translateX(2rem);/*goes right 20px*/
+        }
+        100%{
+            opacity:1;
+            transform: translate(0);/*back at normal state*/
+        }
+      }/*first h1 animation end*/
+      @keyframes moveInRight{
+        0%{
+            opacity:0;
+            transform: translateX(10rem);/*starts at right*/
+        }
+        80%{
+          trasform: translateX(-2rem);/*goes left 20px*/
+        }
+        100%{
+            opacity:1;
+            transform: translate(0);/*back at normal state*/
+        }
+      }/*--animation end*/
+      /*text-box container end*/
+
+      /*h1 buttons*/
+      .btn:link, .btn:visited{
+        text-transform:uppercase;
+        text-decoration:none;
+        padding:1.5rem 4rem;
+        display:inline-block;/*treat like text*/
+        border-radius:10rem;
+        position: relative;
+
+        transition:all .2s;
+      }
+      /*h1 btn animation*/
+      .btn:hover{
+        transform:translateY(-3px);/*move up 3px*/
+        box-shadow: 0 1rem 2rem rgba(0,0,0,.2);
+      }
+      .btn:active{
+        transform:translateY(-1px);
+        box-shadow: 0 .5rem 1rem rgba(0,0,0,.2);
+      }
+      /*end btn animation*/
+      .btn-white{
+        background-color:#fff;
+        color:#777;
+      }
+      .btn::after{
+        content:"";
+        display:inline-block;
+        height:100%;
+        width:100%;
+        border-radius:10rem;
+        position:absolute;
+        top:0;
+        left:0;
+        z-index:-1;
+
+        transition: all .4s;
+      }
+      .btn-white::after{
+        background-color:#fff;
+      }
+      .btn:hover::after{
+          transform:scaleX(1.4) scaleY(1.6);
+          opacity:0;
+      }
+      /*btn animation*/
+      .btn-animated{
+        animation:moveInBottom .5s ease-out .75s;
+        animation-fill-mode:backwards;/* automatically apply 0% animation be it starts*/
+      }
+      /**/
+      @keyframes moveInBottom{
+        0%{
+            opacity:0;
+            transform: translateY(3rem);/*starts at right*/
+        }
+        100%{
+            opacity:1;
+            transform: translate(0);/*back at normal state*/
+        }
+      }/*--btn animation end*/
+      /*-----------header details*/
+
+      /*section about*/
+      .section-about{
+        background-color:#f7f7f7;
+        /*header info 95vh minus 75vh from polygon*/
+        padding:25rem 0;
+        /**/
+        margin-top:-35vh;
+      }
+      .heading-secondary{
+        font-size:3.5rem;
+        text-transform:uppercase;
+        font-weight:400;
+        display:inline-block;
+        color:#333;
+        margin-bottom:5rem;
+
+        /*
+        background-image: linear-gradient(to right, color here, color here);
+        -webkit-background-clip:text;
+        color:transparent;
+
+        //animation
+        background-image:hover{
+          transform: skewY(20deg) skewX(15deg) scale(1.1);
+          text-shadow:.5rem 1rem 2rem rgba(color, .2); x y blur
+        */
+
+      }
+      .box{
+        /*outline: .5rem solid #55c57a;*/
+        padding:25px;
+        border-radius: 40px;
+        background-color:#697571;
+      }
+      /*h2 styling section about*/
+      /*h3 styling section about*/
+      .heading-tertiary{
+        font-size: 1.6rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color:#fff;
+      }
+      .paragraph{
+        font-size: 1.6rem;
+        color:#fff;
+      }
+      .paragraph:not(:last-child){
+        margin-bottom:3rem;
+      }
+      /**/
+      .u-center-text{
+        text-align:center;
+      }
+      .u-margin-bottom-big{
+        margin-bottom:8rem;
+      }
+      .u-margin-bottom-medium{
+        margin-bottom: 4rem;
+      }
+      .u-margin-bottom-small{
+        margin-bottom:1.5rem;
+      }
+      /*section about button*/
+      .btn-text{
+        font-size:1.6rem;
+        color:#f5d269;
+        display:inline-block;
+        text-decoration:none;
+        border-bottom:1px solid #f5d269;
+        padding:3px;
+      }
+      .btn-text:link,.btn-text:visited{
+        font-size:1.6rem;
+        color:#f5d269;
+        display:inline-block;
+        text-decoration:none;
+        border-bottom:1px solid #f5d269;
+        padding:3px;
+        transition: all .2s;
+      }
+      .btn-text:hover{
+        background-color: #f5d269;
+        color:#fff;
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+        transform:translateY(-2px);
+      }
+      .btn-text:active{
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.15);
+        transform:translateY(0);
+      }
+      /*about images*/
+      .composition{
+        position:relative;
+      }
+      .composition__photo {
+ width: 35%;
+ -webkit-box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4);
+ box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4);
+ border-radius: 3px;
+ position: absolute;
+ z-index: 10;
+ -webkit-transition: all .2s;
+ transition: all .2s;
+ outline-offset: 2rem
+
+}
+
+
+.composition__photo--p1 {
+  outline: .5rem solid #ddb5d8;
+  left: 5rem;
+ top: 3rem
+}
+
+.composition__photo--p2 {
+ outline: .5rem solid #ddb5d8;
+ right: -50;
+ top: 5rem
+}
+
+.composition__photo--p3 {
+  border: .6rem solid #ddb5d8;
+  left: 5rem;
+  top: 16rem
+}
+.composition__photo--p4 {
+ border: .6rem solid #ddb5d8;
+ left: 18rem;
+ top: 13rem
+}
+
+.composition__photo:hover {
+ /*outline: .5rem solid #55c57a;*/
+
+ -webkit-transform: scale(1.05) translateY(-0.5rem);
+ transform: scale(1.05) translateY(-0.5rem);
+ -webkit-box-shadow: 0 2.5rem 4rem rgba(0, 0, 0, 0.5);
+ box-shadow: 0 2.5rem 4rem rgba(0, 0, 0, 0.5);
+ z-index: 20;
+}
+.composition:hover .composition__photo:not(:hover) {
+
+ -webkit-transform: scale(0.95);
+ transform: scale(0.95);
+}
+/*features section*/
+.section-features{
+  padding: 20rem 0;
+  background-image: linear-gradient(to right bottom, rgba(96, 0, 128, 0.596), rgba(0, 0, 0, 0.8)) , url(img/realtor_office.jpeg);
+  background-size: cover;
+  transform: skewY(-7deg);
+  margin-top:-290px;
+}
+.section-features > *{
+  transform: skewY(7deg);
+}
+.feature-box{
+  background-color: rgba(255, 255, 255, .8);
+  font-size: 1.5rem;
+  padding: 2.5rem;
+  text-align: center;
+  border-radius:3px;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+  transition: transform .3s;
+  margin: .1rem;
+  
+}
+.feature-box__icon{
+  font-size:6rem;
+  margin-bottom:.5rem;
+  display:inline-block;
+
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15));
+  background-clip:text;      
+  -webkit-background-clip:text;
+   color:transparent;
+}
+.feature-box:hover{
+  transform: translateY(-1.5rem) scale(1.03);
+}
+/*end features section*/
+/*end section tours*/
+.section-tours{
+  background-color:#f7f7f7;
+  padding:25rem 0;
+  margin-top: -10rem;
+}
+/**/
+.card{
+  background-color: #000;
+  height:50rem;
+  transition:all .8s;
+}
+.card__side{
+  overflow:hidden;
+}
+.card__picture{
+  background-size:cover;
+  height:23rem;
+  /*background-blend-mode: screen;*/
+  -webkit-clip-path:polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  clip-path:polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+.card__picture:hover{
+ 
+}
+.card__picture--1{
+  background-image:url(img/house24.jpg);
+}
+.card__picture--2{
+  background-image:url(img/house-3.jpeg);
+}
+.card__picture--3{
+  background-image:url(img/house16.jpg);
+}
+.card__picture--4{
+  background-image:url(img/house5.jpg);
+}
+.card__picture--5{
+  background-image:url(img/house7.jpg);
+}
+.card__picture--6{
+  background-image:url(img/house11.jpg);
+}
+.card__picture--7{
+  background-image:url(img/house12.jpg);
+}
+.card__picture--8{
+  background-image:url(img/house20.jpg);
+}
+.card__picture--9{
+  background-image:url(img/house4.jpg);
+}
+.card__picture--10{
+  background-image:url(img/home_splash.jpg);
+}
+.card__picture--11{
+  background-image:url(img/house-2.jpeg);  
+}
+.card__picture--12{
+  background-image:url(img/house-6.jpeg);
+}
+.card__picture--13{
+  background-image:url(img/appartment-building.jpg);
+}
+.card__picture--14{
+  background-image:url(img/appartment-building2.jpg);  
+}
+.card__picture--15{
+  background-image:url(img/appartment-building3.jpg);
+}
+
+
+.card__heading{
+  font-size: 2.8rem;
+  font-weight:300;
+  text-align:right;
+  text-transform:uppercase;
+  color:#fff;
+  position:absolute;/*text placement*/
+  top:18rem;/*text placement*/
+  right:-.2rem;/*text placement*/
+  width:75%;
+}
+
+
+.card__heading-span {
+    padding: .1rem 1.5rem;
+    -webkit-box-decoration-break: clone; /*create padding around text*/
+    box-decoration-break: clone; /*create padding around text*/
+    }
+
+.card__heading-span--1{
+  background-image:linear-gradient(to right bottom, rgba(255, 153, 51, .85), rgba(0, 0, 0, .85));/*text placement color*/
+}
+
+.card__details{
+  padding: 3rem;
+}
+.card__details ul{
+  list-style: none;
+      width: 80%;
+      margin: 0 auto; 
+}
+
+.card__details ul li{
+  text-align: center;
+        font-size: 1.5rem;
+        padding: 1rem;
+}
+.card__details ul li:not(:last-child) {
+          border-bottom: 1px solid #eee;
+}
+
+.card__cta{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+}
+.card__price-box{
+  text-align:center;
+  color:#fff;
+  margin-bottom:8rem;
+}
+.card__price-only{
+  font-size:1.4rem;
+  text-transform:uppercase;
+}
+.card__price-value{
+  font-size: 6rem;
+  font-weight:100;
+}
+/*stories section*/
+.section-stories{
+  padding:.3rem 0;
+  margin-top:-18rem;
+  position:relative;/*for video position*/
+}
+.story{
+  width:60%;
+  margin: 0 auto;
+  box-shadow: 0 3rem 6rem rgba(0, 0, 0, .1);
+  background-color: rgba(255, 153, 153, .6);
+  border-radius:3px;
+  padding:3rem;
+  padding-left:.5rem;
+  font-size:1.6rem;
+  transform: skewX(-12deg);
+}
+.story > *{
+  transform:skewX(12deg);
+}
+.story:last-child{padding:2rem;}
+.story__shape{
+  width: 15rem;
+    height: 15rem;
+    float: left;
+    -webkit-shape-outside: circle(50% at 50% 50%);
+    shape-outside: circle(50% at 50% 50%);
+    -webkit-clip-path: circle(50% at 50% 50%);
+    clip-path: circle(50% at 50% 50%);
+    transform: translateX(-3rem) skewX(12deg);
+    position: relative;
+}
+.story__img{
+  /*height:100%;*//*make image fit circle height*/
+  width:100%;/*make image fit circle width*/
+  transform: skewX(-4rem) scale(1.4);/*scale image down*/
+  backface-visibility: hidden;
+  transition:all .5s;
+}
+.story__img__heightChange{
+  height:100%;/*make image fit circle height*/
+  /*width:100%;/*make image fit circle width*/
+  transform: skewX(-4rem) scale(1.4);/*scale image down*/
+  backface-visibility: hidden;
+  transition:all .5s;
+}
+.story__text{
+  transform: skewX(12deg);
+}
+.story__caption{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, 20%);
+  color:#fff;
+  text-transform:uppercase;
+  font-size:1.7rem;
+  text-align:center;
+  opacity: 0;
+  transition:all .5s;
+  backface-visibility: hidden;
+}
+.story:hover .story__caption {
+    opacity: 1;
+    transform: translate(-50%, -50%); 
+  }
+  .story:hover .story__img {
+    transform: translateX(-4rem) scale(1);
+    filter: blur(3px) brightness(80%); 
+  }
+  .bg-video{
+    position:absolute;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    z-index:-1;
+    opacity:.15;
+    overflow:hidden;
+  }
+  .bg-video__content{
+    height:100%;
+    width:100%;
+    object-fit:cover;
+  }
+
+  .section-book {
+  padding: 15rem 0;
+ /*ackground-image: linear-gradient(to right bottom, #7ed56f, #28b485);*/ }
+
+.book {
+  background-image: linear-gradient(105deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 50%, transparent 50%), url(img/girl-jump.jpg);
+  background-size: 100%;
+  border-radius: 3px;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2);
+  height: 50rem; }
+  .footer{
+    background-color:#333;
+    padding:2rem 0;
+    font-size:1.4rem;
+    width:100%;
+  }
+  .footer__navigation{
+
+  }
+  .footer__list{
+    list-style:none;
+  }
+  .footer__item{
+    display:inline-block;
+    padding:.4rem .4rem;
+  }
+  .footer:not(:last-child){
+    margin-right:1.5rem;
+  }
+  .footer__link{
+
+  }
+  .footer__link:link{
+    color:#3366ff;
+    text-decoration:none;
+    text-transform:uppercase;
+}
+.footer__link:visited{
+  color:#3366ff;
+  text-decoration:none;
+  text-transform:uppercase;
+  display:inline-block;
+}
+.footer__link:hover{
+  color:#fff;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4);
+}
+.footer__link:active{
+  color:#fff;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4);
+}
+/**/
+      /*row styles*/
+      .row {
+  max-width: 114rem;
+  margin: 0 auto; }
+  .row:not(:last-child) {
+    margin-bottom: 8rem; }
+  .row::after {
+    content: "";
+    display: table;
+    clear: both; }
+  .row [class^="col-"] {
+    float: left; }
+    .row [class^="col-"]:not(:last-child) {
+      margin-right: 6rem; }
+  .row .col-1-of-2 {
+    width: calc((100% - 6rem) / 2); }
+  .row .col-1-of-3 {
+    width: calc((100% - 2 * 6rem) / 3); }
+  .row .col-2-of-3 {
+    width: calc(2 * ((100% - 2 * 6rem) / 3) + 6rem); }
+  .row .col-1-of-4 {
+    width: calc((100% - 3 * 6rem) / 4); }
+  .row .col-2-of-4 {
+    width: calc(2 * ((100% - 3 * 6rem) / 4) + 6rem); }
+  .row .col-3-of-4 {
+    width: calc(3 * ((100% - 3 * 6rem) / 4) + 2 * 6rem); }
+      /**/
+      /*row style end*/
+      
+    </style>
+  </head>
+  <body>
+      <div class="navigation">
+        <input type="checkbox" class="navigation__checkbox" id="navi-toggle"><label for="navi-toggle" class="navigation__button">
+          <span class="navigation_icon">&nbsp;</span>
+        </label>
+
+        <div class="navigation__background">&nbsp;</div>
+        <nav class="navigation__nav">
+          <ul class="navigation__list">
+          <li class="navigation__item"><a href="#" class="navigation__link"><span>01</span>Explore Opportunity</a></li>
+          <li class="navigation__item"><a href="#" class="navigation__link"><span>02</span>Ready To Shop</a></li>
+          <li class="navigation__item"><a href="#" class="navigation__link"><span>03</span>Loan Calculator</a></li>
+          <li class="navigation__item"><a href="#" class="navigation__link"><span>04</span>Need Help Moving</a></li>
+          </ul>
+        </nav>
+      </div><!--navigation end-->
+
+      <header class="header">
+          <div class="logo-box">
+            <img src="img/realtor_logo.jpg" alt="logo" class="logo">
+          </div>
+          <div class="text-box">
+            <h1 class="heading-primary">
+              <span class="heading-primary-main">Dream Homes</span>
+              <span class="heading-primary-sub">Let us help you</span>
+            </h1>
+            <a href="#" class="btn btn-white btn-animated">Get Started</a>
+          </div>
+        </header>
+
+        <section class="section-about">
+            <div class="u-center-text u-margin-bottom-big"><!--center text-->
+              <h2 class="heading-secondary">
+                  FIND A REALTOR FOR YOU
+              </h2><!--h2 element-->
+              <!--section about body-->
+              <div class="row">
+                <div class="col-1-of-2 box">
+                    <h3 class="heading-tertiary u-margin-bottom-small">Welcome to Dream Home Real Estate</h3>
+                    <p class="paragraph">
+                        Ready to find a home to make it your own or just rent, we have it. Search our listings, and when your done just contact one of our agents with just a click. 
+                    </p><!---->
+                    <h3 class="heading-tertiary u-margin-bottom-small">Need to scheldule a appointment?</h3>
+                    <p class="paragraph">
+                        Our hours are 9 a.m. to 5 p.m. Monday thru Friday. If this dosen't fit your schedule just message us and we will get back with you during normal business hours. Remember you are just one click away from your new home. 
+                    </p><!---->
+                    <a href="#" class="btn-text">Let's Get Started</a>
+                </div>
+                <!--/ end col-1-of-2 /-->
+                <div class="col-1-of-2">
+                    <div class="composition">
+                      <img src="img/agent_1.jpeg" alt="agent" class="composition__photo composition__photo--p1">
+                      <img src="img/agent_5.jpeg" alt="agent" class="composition__photo composition__photo--p2">
+                      <img src="img/agent_4.jpeg" alt="agent" class="composition__photo composition__photo--p3">
+                      <img src="img/agent_3.jpeg" alt="agent" class="composition__photo composition__photo--p4">
+                    </div>
+                </div>
+                <!--/ end col-1-of-2 /-->
+              </div><!--row end-->
+             
+            </div>
+        </section> <!--section abuout end-->
+        <section class="section-features">
+          <div class="row">
+            <div class="col-1-of-4">
+              <div class="feature-box">
+               
+                <i class="fa fa-bed feature-box__icon icon-basic-world"></i>
+            
+                  <h3 class= "heading-tertiary u-margin-bottom-small">
+                    Explore Apartments Near You 
+                  </h3>
+                  <p class="feature-box__text">
+                      We have multiple selections of apartments of different types to fit your budget.
+                  </p>
+              </div><!--feature end-->
+            </div><!--col end-->
+
+            <div class="col-1-of-4">
+                <div class="feature-box">
+                 
+                  <i class="fa fa-home feature-box__icon icon-basic-world"></i>
+                  
+                    <h3 class= "heading-tertiary u-margin-bottom-small">
+                      Explore Homes Near You, Today
+                    </h3>
+                    <p class="feature-box__text">
+                       We have multiple selections of homes from low priced to fully furnished.
+                    </p>
+                </div><!--feature end-->
+              </div><!--col end-->
+
+              <div class="col-1-of-4">
+                  <div class="feature-box">
+                   
+                    <i class="fa fa-usd feature-box__icon icon-basic-world"></i>
+                  
+                      <h3 class= "heading-tertiary u-margin-bottom-small">
+                          Need to figure out how much you pay?
+                      </h3>
+                      <p class="feature-box__text">
+                          Use Our Caculator to find out how much you pay. You make the choices.
+                      </p>
+                  </div><!--feature end-->
+                </div><!--col end-->
+
+                <div class="col-1-of-4">
+                    <div class="feature-box">
+                     
+                      <i class="fa fa-truck feature-box__icon icon-basic-world"></i>
+                     
+                        <h3 class= "heading-tertiary u-margin-bottom-small">
+                            Moving, let us help you now 
+                        </h3>
+                        <p class="feature-box__text">
+                            We help make moving easy. Our specialized team will get your things moved for you.
+                            
+                        </p>
+                    </div><!--feature end-->
+                  </div><!--col end-->
+          </div><!--row end-->
+        </section><!--section end-->
+        <section class="section-tours">
+          <div class="u-center-text u-margin-bottom-big">
+            <h2 class="heading-secondary">
+              <span class="nameChange">Homes for Sale</span>
+            </h2>
+          </div>
+
+          <div class="row">
+            <div class="col-1-of-3">
+              <div class="card card__side--front">
+                <div class="card__picture card__picture--1">
+                    &nbsp;
+                </div><!--picture-->
+                <h4 class="card__heading">
+                    <span class="card__heading-span card__heading-span--1">Create A Appointment</span>
+                </h4><!--heading-->
+                  <div class="card__details">
+                      <ul>
+                        <li>4 bed rooms</li>
+                        <li>3 baths</li>
+                        <li>outdoor swimming pool</li>
+                        <li>3 car garage</li>
+                        <li>spacious</li>
+                      </ul> 
+                  </div><!--details-->
+              </div>
+            </div><!--col-3-->
+
+            <div class="col-1-of-3">
+              <div class="card card__side--front">
+                <div class="card__picture card__picture--2">
+                    &nbsp;
+                </div><!--picture-->
+                <h4 class="card__heading">
+                    <span class="card__heading-span card__heading-span--1">Create A Appointment</span>
+                </h4><!--heading-->
+                  <div class="card__details">
+                      <ul>
+                        <li>4 bed rooms</li>
+                        <li>3 baths</li>
+                        <li>outdoor swimming pool</li>
+                        <li>3 car garage</li>
+                        <li>spacious</li>
+                      </ul> 
+                  </div><!--details-->
+              </div>
+            </div><!--col-3-->
+
+            <div class="col-1-of-3">
+              <div class="card card__side--front">
+                <div class="card__picture card__picture--3">
+                    &nbsp;
+                </div><!--picture-->
+                <h4 class="card__heading">
+                    <span class="card__heading-span card__heading-span--1">Create A Appointment</span>
+                </h4><!--heading-->
+                  <div class="card__details">
+                      <ul>
+                        <li>4 bed rooms</li>
+                        <li>3 baths</li>
+                        <li>outdoor swimming pool</li>
+                        <li>3 car garage</li>
+                        <li>spacious</li>
+                      </ul> 
+                  </div><!--details-->
+              </div>
+            </div><!--col-3-->
+
+          </div><!--row end--> 
+
+          <div class="row">
+            <div class="col-1-of-3">
+              <div class="card card__side--front">
+                <div class="card__picture card__picture--4">
+                    &nbsp;
+                </div><!--picture-->
+                <h4 class="card__heading">
+                    <span class="card__heading-span card__heading-span--1">Create A Appointment</span>
+                </h4><!--heading-->
+                  <div class="card__details">
+                      <ul>
+                        <li>4 bed rooms</li>
+                        <li>3 baths</li>
+                        <li>outdoor swimming pool</li>
+                        <li>3 car garage</li>
+                        <li>spacious</li>
+                      </ul> 
+                  </div><!--details-->
+              </div>
+            </div><!--col-3-->
+
+            <div class="col-1-of-3">
+              <div class="card card__side--front">
+                <div class="card__picture card__picture--5">
+                    &nbsp;
+                </div><!--picture-->
+                <h4 class="card__heading">
+                    <span class="card__heading-span card__heading-span--1">Create A Appointment</span>
+                </h4><!--heading-->
+                  <div class="card__details">
+                      <ul>
+                        <li>4 bed rooms</li>
+                        <li>3 baths</li>
+                        <li>outdoor swimming pool</li>
+                        <li>3 car garage</li>
+                        <li>spacious</li>
+                      </ul> 
+                  </div><!--details-->
+              </div>
+            </div><!--col-3-->
+
+            <div class="col-1-of-3">
+              <div class="card card__side--front">
+                <div class="card__picture card__picture--6">
+                    &nbsp;
+                </div><!--picture-->
+                <h4 class="card__heading">
+                    <span class="card__heading-span card__heading-span--1">Create A Appointment</span>
+                </h4><!--heading-->
+                  <div class="card__details">
+                      <ul>
+                        <li>4 bed rooms</li>
+                        <li>3 baths</li>
+                        <li>outdoor swimming pool</li>
+                        <li>3 car garage</li>
+                        <li>spacious</li>
+                      </ul> 
+                  </div><!--details-->
+              </div>
+            </div><!--col-3-->
+
+          </div><!--row end--> 
+
+          <div class="row">
+            <div class="col-1-of-3">
+              <div class="card card__side--front">
+                <div class="card__picture card__picture--7">
+                    &nbsp;
+                </div><!--picture-->
+                <h4 class="card__heading">
+                    <span class="card__heading-span card__heading-span--1">Create A Appointment</span>
+                </h4><!--heading-->
+                  <div class="card__details">
+                      <ul>
+                        <li>4 bed rooms</li>
+                        <li>3 baths</li>
+                        <li>outdoor swimming pool</li>
+                        <li>3 car garage</li>
+                        <li>spacious</li>
+                      </ul> 
+                  </div><!--details-->
+              </div>
+            </div><!--col-3-->
+
+            <div class="col-1-of-3">
+              <div class="card card__side--front">
+                <div class="card__picture card__picture--8">
+                    &nbsp;
+                </div><!--picture-->
+                <h4 class="card__heading">
+                    <span class="card__heading-span card__heading-span--1">Create A Appointment</span>
+                </h4><!--heading-->
+                  <div class="card__details">
+                      <ul>
+                        <li>4 bed rooms</li>
+                        <li>3 baths</li>
+                        <li>outdoor swimming pool</li>
+                        <li>3 car garage</li>
+                        <li>spacious</li>
+                      </ul> 
+                  </div><!--details-->
+              </div>
+            </div><!--col-3-->
+
+            <div class="col-1-of-3">
+              <div class="card card__side--front">
+                <div class="card__picture card__picture--9">
+                    &nbsp;
+                </div><!--picture-->
+                <h4 class="card__heading">
+                    <span class="card__heading-span card__heading-span--1">Create A Appointment</span>
+                </h4><!--heading-->
+                  <div class="card__details">
+                      <ul>
+                        <li>4 bed rooms</li>
+                        <li>3 baths</li>
+                        <li>outdoor swimming pool</li>
+                        <li>3 car garage</li>
+                        <li>spacious</li>
+                      </ul> 
+                  </div><!--details-->
+              </div>
+            </div><!--col-3-->
+            
+
+          </div><!--row end--> 
+          <div class="row">
+            <div class="col-1-of-3">
+              <div class="card card__side--front">
+                <div class="card__picture card__picture--10">
+                    &nbsp;
+                </div><!--picture-->
+                <h4 class="card__heading">
+                    <span class="card__heading-span card__heading-span--1">Create A Appointment</span>
+                </h4><!--heading-->
+                  <div class="card__details">
+                      <ul>
+                        <li>4 bed rooms</li>
+                        <li>3 baths</li>
+                        <li>outdoor swimming pool</li>
+                        <li>3 car garage</li>
+                        <li>spacious</li>
+                      </ul> 
+                  </div><!--details-->
+              </div>
+            </div><!--col-3-->
+
+            <div class="col-1-of-3">
+              <div class="card card__side--front">
+                <div class="card__picture card__picture--11">
+                    &nbsp;
+                </div><!--picture-->
+                <h4 class="card__heading">
+                    <span class="card__heading-span card__heading-span--1">Create A Appointment</span>
+                </h4><!--heading-->
+                  <div class="card__details">
+                      <ul>
+                        <li>4 bed rooms</li>
+                        <li>3 baths</li>
+                        <li>outdoor swimming pool</li>
+                        <li>3 car garage</li>
+                        <li>spacious</li>
+                      </ul> 
+                  </div><!--details-->
+              </div>
+            </div><!--col-3-->
+
+            <div class="col-1-of-3">
+              <div class="card card__side--front">
+                <div class="card__picture card__picture--12">
+                    &nbsp;
+                </div><!--picture-->
+                <h4 class="card__heading">
+                    <span class="card__heading-span card__heading-span--1">Create A Appointment</span>
+                </h4><!--heading-->
+                  <div class="card__details">
+                      <ul>
+                        <li>4 bed rooms</li>
+                        <li>3 baths</li>
+                        <li>outdoor swimming pool</li>
+                        <li>3 car garage</li>
+                        <li>spacious</li>
+                      </ul> 
+                  </div><!--details-->
+              </div>
+            </div><!--col-3-->
+
+          </div><!--row end--> 
+
+          <div class="row">
+            <div class="col-1-of-3">
+              <div class="card card__side--front">
+                <div class="card__picture card__picture--13">
+                    &nbsp;
+                </div><!--picture-->
+                <h4 class="card__heading">
+                    <span class="card__heading-span card__heading-span--1">Create A Appointment</span>
+                </h4><!--heading-->
+                  <div class="card__details">
+                      <ul>
+                        <li>4 bed rooms</li>
+                        <li>3 baths</li>
+                        <li>outdoor swimming pool</li>
+                        <li>3 car garage</li>
+                        <li>spacious</li>
+                      </ul> 
+                  </div><!--details-->
+              </div>
+            </div><!--col-3-->
+
+            <div class="col-1-of-3">
+              <div class="card card__side--front">
+                <div class="card__picture card__picture--14">
+                    &nbsp;
+                </div><!--picture-->
+                <h4 class="card__heading">
+                    <span class="card__heading-span card__heading-span--1">Create A Appointment</span>
+                </h4><!--heading-->
+                  <div class="card__details">
+                      <ul>
+                        <li>4 bed rooms</li>
+                        <li>3 baths</li>
+                        <li>outdoor swimming pool</li>
+                        <li>3 car garage</li>
+                        <li>spacious</li>
+                      </ul> 
+                  </div><!--details-->
+              </div>
+            </div><!--col-3-->
+
+            <div class="col-1-of-3">
+              <div class="card card__side--front">
+                <div class="card__picture card__picture--15">
+                    &nbsp;
+                </div><!--picture-->
+                <h4 class="card__heading">
+                    <span class="card__heading-span card__heading-span--1">Create A Appointment</span>
+                </h4><!--heading-->
+                  <div class="card__details">
+                      <ul>
+                        <li>4 bed rooms</li>
+                        <li>3 baths</li>
+                        <li>outdoor swimming pool</li>
+                        <li>3 car garage</li>
+                        <li>spacious</li>
+                      </ul> 
+                  </div><!--details-->
+              </div>
+            </div><!--col-3-->
+            
+
+            <!--<div class="card__side card__side--back card__side--back-1">
+              <div class="card__cta">
+                <div class="card__price-box">
+                  <p class="card__price-only">Only</p>
+                  <p class="card_price-value">$297,000</p>
+                </div>
+                <a href="#" class="btn btn--white">Buy now</a>
+              </div>
+            </div>
+
+          </div>--><!--row end--> 
+        </section>
+        <section class="section-stories"><!--section stories-->
+          <div class="bg-video">
+            <video class="bg-video__content" autoplay muted loop>
+              <source src="img/Aerial Shot Of City.mp4" type="video/mp4">
+                your browser is not supported
+            </video>
+          </div>
+          <div class="u-center-text u-margin-bottom-big"><!--center text-->
+            <h2 class="heading-secondary">
+              We make people happy
+            </h2>
+          </div>
+
+          <div class="row">
+            <div class="col-1-of-2">
+            <div class="story">
+              <figure class="story__shape">
+                <img src="img/man.jpg" alt="person review" class="story__img">
+
+                <figcaption class="story__caption">Larry Smith</figcaption>
+              </figure>
+              <div class="story__text">
+                <h3 class="heading-tertiary">
+                  homes look great
+                </h3>
+                <p>The movers were really nice, they had great attitudes and took special care of my things.</p>
+              </div>
+            </div>
+            </div>
+            <div class="col-1-of-2">
+                <div class="story">
+                    <figure class="story__shape">
+                      <img src="img/woman.jpg" alt="person review" class="story__img story__img__heightChange">
+      
+                      <figcaption class="story__caption">Ashely Smith</figcaption>
+                    </figure>
+                    <div class="story__text">
+                      <h3 class="heading-tertiary">
+                        what a great experience
+                      </h3>
+                      <p> This is a great company, I would definitely recommend this company when looking for a new home.
+                        They even helped me bring my things inside.
+                      </p>
+                      
+                      <div class="u-center-text u-margin-bottom-big"><!--read more &rarr;--></div>
+                    </div>
+                  </div>
+            </div>
+          </div><!--row end-->
+          <!--<div class="row">
+              <div class="story">
+                <figure class="story__shape">
+                  <img src="img/woman.jpg" alt="person review" class="story__img story__img__heightChange">
+  
+                  <figcaption class="story__caption">Ashely Smith</figcaption>
+                </figure>
+                <div class="story__text">
+                  <h3 class="heading-tertiary">
+                    what a great experience
+                  </h3>
+                  <p> great company</p>
+                  
+                  <div class="u-center-text u-margin-bottom-big">read more &rarr;</div>
+                </div>
+              </div>
+            </div><!--row end-->
+        </section>
+        <footer class="footer">
+          <div class="footer__logo-box"></div>
+           
+          <div class="row">
+            <div class="col-1-of-2">
+               <div class="footer_navigation">
+                  <ul class="footer_list">
+                    <li class="footer__item"><a href="#" class="footer__link">Company</a></li>
+                    <li class="footer__item"><a href="#" class="footer__link">Careers</a></li>
+                    <li class="footer__item"><a href="#" class="footer__link">Privacy Policy</a></li>
+                    <li class="footer__item"><a href="#" class="footer__link">Terms</a></li>
+                  </ul>
+                </div>
+             </div>
+             <div class="col-1-of-2">
+               <p class="footer__copyright">
+                 Copyright &copy; by Lavor D. Reed
+               </p>
+             </div>
+          </div>
+
+
+        </footer>
+        
+
+        <!--bootstrap js-->
+        <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+        <!--end boostrap js-->
+  </body>
+
+</html>
